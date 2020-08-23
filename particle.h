@@ -58,9 +58,9 @@ struct Particle {
 
           this->vely -= gravity * this->pSize;
           this->velx *= cF;
-		  
-		  uint8_t boundL = 0;
-		  uint8_t boundR = WIDTH;
+          
+          uint8_t boundL = 0;
+          uint8_t boundR = WIDTH;
 
           if( this->type == 1 ){
             boundL = boardOffset+2;
