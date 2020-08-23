@@ -25,7 +25,6 @@ struct Particle {
         uint8_t counter = 0;
         uint8_t pSize = 1;
         uint8_t type = 1;
-        int16_t boundL, boundR;
         uint8_t wordNum;
 
     public:
@@ -59,31 +58,34 @@ struct Particle {
 
           this->vely -= gravity * this->pSize;
           this->velx *= cF;
+		  
+		  uint8_t boundL = 0;
+		  uint8_t boundR = WIDTH;
 
           if( this->type == 1 ){
-            this->boundL = boardOffset+2;
-            this->boundR = (boardWidth*partSize)+2+boardOffset;
+            boundL = boardOffset+2;
+            boundR = (boardWidth*partSize)+2+boardOffset;
           }
           else if( this->type ==0){
-            this->boundL = 0;
-            this->boundR = 128;
+            boundL = 0;
+            boundR = WIDTH;
           }
           else if( this->type ==2){
-            this->boundL = 0;  
-            this->boundR = boardOffset;
+            boundL = 0;  
+            boundR = boardOffset;
           }
           else if( this->type ==3){
-            this->boundL = (boardWidth*partSize)+boardOffset+4;  
-            this->boundR = 128;
+            boundL = (boardWidth*partSize)+boardOffset+4;  
+            boundR = WIDTH;
           }
                     
-          if(this->x > this->boundR - this->pSize ){
-            this->x = this->boundR - this->pSize ;
+          if(this->x > boundR - this->pSize ){
+            this->x = boundR - this->pSize ;
             this->velx = -this->velx;
             
           }
-          if(this->x < this->boundL){
-            this->x = this->boundL;
+          if(this->x < boundL){
+            this->x = boundL;
             this->velx = -this->velx;
           }
           
