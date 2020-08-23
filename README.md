@@ -9,7 +9,7 @@ Part Movement: Slowly falling controlled by player
 
 Horizontal Starting Distribution: Random
 
-Scoring:
+# Scoring:
 
 +1 point for stacking each Block
 
@@ -18,7 +18,7 @@ Scoring:
 Failure Mode: Allowing Blocks to stack to the top
 
 
-Controls:
+# Controls:
 
 Up: Nothing
 
