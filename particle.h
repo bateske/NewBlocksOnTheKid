@@ -5,6 +5,8 @@
  * 
  * 
  */
+ 
+#include <FixedPointsCommon.h>
 
 #define boardWidth 5
 #define boardHeight 10
@@ -17,8 +19,8 @@ struct Particle {
 
         int16_t x = 0;
         int16_t y = 0;
-        float velx = 0;
-        float vely = 0;
+        SQ7x8 velx = 0;
+        SQ7x8 vely = 0;
         uint8_t counterInit = 0;
         uint8_t counter = 0;
         uint8_t pSize = 1;
@@ -28,9 +30,9 @@ struct Particle {
 
     public:
 
-        static constexpr float rThresh = 0.000001 * 16;
-        static constexpr float cF = 0.96;
-        static constexpr float gravity = 0.12;
+        static constexpr SQ7x8 rThresh = 0.000001 * 16;
+        static constexpr SQ7x8 cF = 0.96;
+        static constexpr SQ7x8 gravity = 0.12;
 
         int16_t getX()                          { return this->x; }
         int16_t getY()                          { return this->y; }
@@ -42,8 +44,8 @@ struct Particle {
         void setX(int16_t val)                  { this->x = val; }
         void setY(int16_t val)                  { this->y = val; }
         void setCounter(int16_t val)             { this->counter = val; this->counterInit = val; }
-        void setVelX(float val)                  { this->velx = val; }
-        void setVelY(float val)                  { this->vely = val; }
+        void setVelX(SQ7x8 val)                  { this->velx = val; }
+        void setVelY(SQ7x8 val)                  { this->vely = val; }
         void setSize(uint8_t val)                { this->pSize = val; }
         void setType(int val)                { this->type = val; }
         void setWord(int val)                { this->wordNum = val; } 
@@ -106,8 +108,8 @@ struct Particle {
             }           
           }
           
-          this->x += this->velx;
-          this->y -= this->vely;
+          this->x += static_cast<int8_t>(this->velx);
+          this->y -= static_cast<int8_t>(this->vely);
 
           // shift size
           
